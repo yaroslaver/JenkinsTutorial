@@ -2,12 +2,13 @@
 Jenkinsfile (Declarative Pipeline)
 
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { docker { image 'manycoding/robotframework' } }
     stages {
-        stage('build') {
+        stage('start') {
             steps {
-                sh 'python --version'
+                sh 'python main.py'
             }
+
         }
     }
 }

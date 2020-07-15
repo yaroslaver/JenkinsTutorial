@@ -2,19 +2,19 @@ class Cat:
     def __init__(self, name, bowl = None):
         self.name = name
         self.bowl = bowl
-        print("{}: I am here".format(self.name))
+        # print("{}: I am here".format(self.name))
 
     def meow(self):
-        print("{}: Meow".format(self.name))
+        return "{}: Meow\n".format(self.name)
 
     def eat(self):
         if self.bowl == None:
-            print("There isn't bowl")
+            return "There isn't bowl\n"
         else:
             if self.bowl.isdec():
-                print("Nice food")
+                return "Nice food\n"
             else:
-                print("I am hungry")
+                return "I am hungry\n"
 
 
 class Bowl:
@@ -34,15 +34,18 @@ class Bowl:
 
 
 if __name__ == "__main__":
-    cat = Cat("Cleo")
-    cat.meow()
-    cat.eat()
+    with open("output.txt", "w") as file:
+        cat = Cat("Cleo")
+        file.write(cat.meow())
+        file.write(cat.eat())
 
-    bowl_for_milisa = Bowl(5)
-    print("Bowl volume is {}".format(bowl_for_milisa.getvolume()))
+        bowl_for_milisa = Bowl(5)
+        file.write("Bowl volume is {}\n".format(bowl_for_milisa.getvolume()))
 
-    cat2 = Cat("Milisa", bowl_for_milisa)
-    cat2.meow()
-    cat2.eat()
+        cat2 = Cat("Milisa", bowl_for_milisa)
+        file.write(cat2.meow())
+        file.write(cat2.eat())
 
-    print("Bowl volume is {}".format(bowl_for_milisa.getvolume()))
+        file.write("Bowl volume is {}\n".format(bowl_for_milisa.getvolume()))
+
+        file.flush()
