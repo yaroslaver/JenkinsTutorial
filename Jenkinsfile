@@ -19,4 +19,10 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            archive (includes: 'robot/*.html')
+        }
+    }
 }
