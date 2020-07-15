@@ -1,6 +1,5 @@
 
 pipeline {
-    // agent { docker { image 'manycoding/robotframework' } }
     agent { docker {
                 image 'ppodgorsek/robot-framework:latest'
                 args '--shm-size=1g -u root' }
@@ -22,7 +21,7 @@ pipeline {
 
     post {
         always {
-            archive (includes: 'robot/*.html')
+            archiveArtifacts artifacts: '*.html', onlyIfSuccessful: true
         }
     }
 }
